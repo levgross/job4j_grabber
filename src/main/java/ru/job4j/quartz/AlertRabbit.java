@@ -49,7 +49,6 @@ public class AlertRabbit {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static class Rabbit implements Job {

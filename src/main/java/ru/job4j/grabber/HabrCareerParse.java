@@ -30,4 +30,19 @@ public class HabrCareerParse {
             });
         }
     }
+
+    private String retrieveDescription(String link) {
+        StringBuilder description = new StringBuilder();
+        try {
+            Connection connection = Jsoup.connect(link);
+            Document document = connection.get();
+            Elements descElements = document.select(".job_show_description__vacancy_description");
+            descElements.forEach(desc -> {
+                description.append(String.format("%s%n", desc.text()));
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return description.toString();
+    }
 }

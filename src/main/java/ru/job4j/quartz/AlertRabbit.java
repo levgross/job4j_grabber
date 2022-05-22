@@ -13,7 +13,8 @@ import static org.quartz.TriggerBuilder.*;
 
 public class AlertRabbit {
     public static void main(String[] args) {
-        try (Connection cn = init(config())) {
+        Properties config = config();
+        try (Connection cn = init(config)) {
             Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
             scheduler.start();
             JobDataMap data = new JobDataMap();
@@ -22,7 +23,7 @@ public class AlertRabbit {
                     .usingJobData(data)
                     .build();
             SimpleScheduleBuilder times = simpleSchedule()
-                    .withIntervalInSeconds(Rabbit.interval(config()))
+                    .withIntervalInSeconds(Rabbit.interval(config))
                     .repeatForever();
             Trigger trigger = newTrigger()
                     .startNow()

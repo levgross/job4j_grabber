@@ -1,6 +1,6 @@
 package ru.job4j.grabber;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Post {
@@ -8,9 +8,9 @@ public class Post {
     private String title;
     private String link;
     private String description;
-    private ZonedDateTime created;
+    private LocalDateTime created;
 
-    public Post(int id, String title, String link, String description, ZonedDateTime created) {
+    public Post(int id, String title, String link, String description, LocalDateTime created) {
         this.id = id;
         this.title = title;
         this.link = link;
@@ -18,7 +18,7 @@ public class Post {
         this.created = created;
     }
 
-    public Post(String title, String link, String description, ZonedDateTime created) {
+    public Post(String title, String link, String description, LocalDateTime created) {
         this.title = title;
         this.link = link;
         this.description = description;
@@ -57,11 +57,11 @@ public class Post {
         this.description = description;
     }
 
-    public ZonedDateTime getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(ZonedDateTime created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 

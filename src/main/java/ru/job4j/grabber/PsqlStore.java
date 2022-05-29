@@ -53,19 +53,23 @@ public class PsqlStore implements Store, AutoCloseable {
         try (PreparedStatement ps = cnn.prepareStatement("select * from post")) {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    posts.add(new Post(
-                            rs.getInt("id"),
-                            rs.getString("name"),
-                            rs.getString("text"),
-                            rs.getString("link"),
-                            rs.getTimestamp("created").toLocalDateTime()
-                    ));
+                    posts.add(getPost(rs));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return posts;
+    }
+
+    private Post getPost(ResultSet rs) throws Exception {
+        return new Post(
+                rs.getInt("id"),
+                rs.getString("name"),
+                rs.getString("text"),
+                rs.getString("link"),
+                rs.getTimestamp("created").toLocalDateTime()
+        );
     }
 
     @Override

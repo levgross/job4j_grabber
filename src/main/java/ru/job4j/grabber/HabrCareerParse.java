@@ -56,7 +56,7 @@ public class HabrCareerParse implements Parse {
             Document document = connection.get();
             Elements descElements = document.select(".job_show_description__vacancy_description");
             descElements.forEach(desc -> {
-                description.append(String.format("%s%n", desc.text()));
+                description.append(String.format("%s", desc.text()));
             });
         } catch (IOException e) {
             e.printStackTrace();

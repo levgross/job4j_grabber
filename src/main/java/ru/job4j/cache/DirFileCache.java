@@ -1,6 +1,8 @@
 package ru.job4j.cache;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class DirFileCache extends AbstractCache<String, String> {
     private final String cachingDir;
@@ -11,14 +13,12 @@ public class DirFileCache extends AbstractCache<String, String> {
 
     @Override
     protected String load(String key) {
-        StringBuilder text = new StringBuilder();
-        try (BufferedReader in = new BufferedReader(new FileReader(key))) {
-           for (String line = in.readLine(); line != null; line = in.readLine()) {
-               text.append(line + System.lineSeparator());
-           }
+        String text = "";
+        try {
+            text = Files.readString(Path.of(key));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return text.toString();
+        return text;
     }
 }

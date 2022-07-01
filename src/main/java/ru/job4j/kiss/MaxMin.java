@@ -5,6 +5,14 @@ import java.util.List;
 
 public class MaxMin {
     public static <T> T max(List<T> value, Comparator<T> comparator) {
+        return find(value, comparator);
+    }
+
+    public static <T> T min(List<T> value, Comparator<T> comparator) {
+        return find(value, comparator.reversed());
+    }
+
+    private static <T> T find(List<T> value, Comparator<T> comparator) {
         T result = value.get(0);
         for (int i = 1; i < value.size(); i++) {
             if (value.get(i) != null && comparator.compare(result, value.get(i)) < 0) {
@@ -12,9 +20,5 @@ public class MaxMin {
             }
         }
         return result;
-    }
-
-    public static <T> T min(List<T> value, Comparator<T> comparator) {
-        return max(value, comparator.reversed());
     }
 }

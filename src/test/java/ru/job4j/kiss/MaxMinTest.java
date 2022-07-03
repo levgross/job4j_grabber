@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class MaxMinTest {
     List<String> strings = new ArrayList<>();
@@ -20,7 +21,6 @@ public class MaxMinTest {
         strings.add("two");
         strings.add("three");
         strings.add("four");
-        strings.add(null);
         strings.add("five");
 
         numbers.add(1);
@@ -56,5 +56,13 @@ public class MaxMinTest {
         Comparator<String> comparator = Comparator.comparing(String::length);
         var value = MaxMin.min(strings, comparator);
         Assert.assertEquals("an", value);
+    }
+
+    @Test
+    public void whenMaxForEmpty() {
+        Comparator<Integer> comparator = Comparator.naturalOrder();
+        List<Integer> nums = new ArrayList<>();
+        var value = MaxMin.max(nums, comparator);
+        assertNull(value);
     }
 }

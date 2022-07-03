@@ -13,10 +13,15 @@ public class MaxMin {
     }
 
     private static <T> T find(List<T> value, Comparator<T> comparator) {
-        T result = value.get(0);
-        for (int i = 1; i < value.size(); i++) {
-            if (value.get(i) != null && comparator.compare(result, value.get(i)) < 0) {
-                result = value.get(i);
+        T result;
+        if (value.isEmpty()) {
+            result = null;
+        } else {
+            result = value.get(0);
+            for (int i = 1; i < value.size(); i++) {
+                if (comparator.compare(result, value.get(i)) < 0) {
+                    result = value.get(i);
+                }
             }
         }
         return result;

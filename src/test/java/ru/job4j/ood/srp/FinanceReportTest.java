@@ -7,6 +7,7 @@ import java.util.Calendar;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static ru.job4j.ood.srp.FinanceReport.DATE_FORMAT;
+import static ru.job4j.ood.srp.FinanceReport.MONTHES;
 
 public class FinanceReportTest {
     @Test
@@ -22,7 +23,7 @@ public class FinanceReportTest {
                 .append(worker.getName()).append(";")
                 .append(DATE_FORMAT.format(worker.getHired().getTime())).append(";")
                 .append(DATE_FORMAT.format(worker.getFired().getTime())).append(";")
-                .append(worker.getSalary() * 12).append(";")
+                .append(worker.getSalary() * MONTHES).append(";")
                 .append(System.lineSeparator());
         assertThat(financeReport.generate(em -> true), is(expect.toString()));
     }

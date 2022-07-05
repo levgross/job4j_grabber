@@ -7,6 +7,7 @@ public class FinanceReport implements Report {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd:MM:yyyy HH:mm");
     private Store store;
+    public static final int MONTHES = 12;
 
     public FinanceReport(Store store) {
         this.store = store;
@@ -21,7 +22,7 @@ public class FinanceReport implements Report {
             text.append(employee.getName()).append(";")
                     .append(DATE_FORMAT.format(employee.getHired().getTime())).append(";")
                     .append(DATE_FORMAT.format(employee.getFired().getTime())).append(";")
-                    .append(employee.getSalary() * 12).append(";")
+                    .append(employee.getSalary() * MONTHES).append(";")
                     .append(System.lineSeparator());
         }
         return text.toString();

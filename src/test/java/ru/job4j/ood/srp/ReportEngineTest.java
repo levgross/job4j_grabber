@@ -12,7 +12,7 @@ public class ReportEngineTest {
 
     @Test
     public void whenOldGenerated() {
-        MemStore store = new MemStore();
+        Store store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);

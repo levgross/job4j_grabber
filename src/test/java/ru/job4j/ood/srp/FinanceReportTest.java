@@ -12,7 +12,7 @@ import static ru.job4j.ood.srp.FinanceReport.MONTHES;
 public class FinanceReportTest {
     @Test
     public void whenFinanceReportGenerated() {
-        MemStore store = new MemStore();
+        Store store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);

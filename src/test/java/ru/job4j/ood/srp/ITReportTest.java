@@ -12,7 +12,7 @@ public class ITReportTest {
 
     @Test
     public void whenITReportGenerated() {
-        MemStore store = new MemStore();
+        Store store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);

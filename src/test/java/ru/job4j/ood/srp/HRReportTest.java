@@ -11,7 +11,7 @@ public class HRReportTest {
 
     @Test
     public void whenHRReportGenerated() {
-        MemStore store = new MemStore();
+        Store store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker1 = new Employee("Ivan", now, now, 100);
         Employee worker2 = new Employee("Ivan", now, now, 300);

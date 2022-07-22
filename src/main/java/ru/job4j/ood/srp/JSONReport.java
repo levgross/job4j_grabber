@@ -8,15 +8,16 @@ import java.util.function.Predicate;
 
 public class JSONReport implements Report {
     private Store store;
+    Gson gson;
 
-    public JSONReport(Store store) {
+    public JSONReport(Store store, Gson gson) {
         this.store = store;
+        this.gson = gson;
     }
 
     @Override
     public String generate(Predicate<Employee> filter) {
         List<Employee> employees = store.findBy(filter);
-        Gson gson = new GsonBuilder().create();
         return gson.toJson(employees);
     }
 }

@@ -13,29 +13,24 @@ import java.util.function.Predicate;
 
 public class XMLReport implements Report {
     Store store;
+    JAXBContext context;
+    Marshaller marshaller;
 
-    public XMLReport(Store store) {
+    public XMLReport(Store store, Marshaller marshaller) {
         this.store = store;
+        this.marshaller = marshaller;
     }
 
     @Override
     public String generate(Predicate<Employee> filter) {
         List<Employee> employees = store.findBy(filter);
         String xml = "";
-        try {
-            JAXBContext context = JAXBContext.newInstance(Employees.class);
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             try (StringWriter writer = new StringWriter()) {
                     marshaller.marshal(new Employees(employees), writer);
                     xml = writer.getBuffer().toString();
-            } catch (IOException e) {
+            } catch (IOException | JAXBException e) {
                 e.printStackTrace();
             }
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-
         return xml;
     }
 

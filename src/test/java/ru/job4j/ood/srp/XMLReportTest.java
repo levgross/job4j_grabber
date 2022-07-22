@@ -3,9 +3,7 @@ package ru.job4j.ood.srp;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -15,9 +13,6 @@ class XMLReportTest {
     @Test
     public void whenXMLReportGenerated() throws DatatypeConfigurationException, JAXBException {
         Store store = new MemStore();
-        JAXBContext context = JAXBContext.newInstance(XMLReport.Employees.class);
-        Marshaller marshaller = context.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
         Calendar now = Calendar.getInstance();
         Date date = now.getTime();
@@ -30,7 +25,7 @@ class XMLReportTest {
         Employee worker1 = new Employee("John", now, now, 100);
         store.add(worker1);
 
-        Report report = new XMLReport(store, marshaller);
+        Report report = new XMLReport(store);
 
         String expected = """
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>

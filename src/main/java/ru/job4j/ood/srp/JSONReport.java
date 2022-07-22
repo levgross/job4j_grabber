@@ -8,11 +8,11 @@ import java.util.function.Predicate;
 
 public class JSONReport implements Report {
     private Store store;
-    Gson gson;
+    private Gson gson;
 
-    public JSONReport(Store store, Gson gson) {
+    public JSONReport(Store store) {
         this.store = store;
-        this.gson = gson;
+        this.gson = new GsonBuilder().create();
     }
 
     @Override

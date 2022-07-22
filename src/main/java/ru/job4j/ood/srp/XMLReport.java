@@ -7,18 +7,19 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.function.Predicate;
 
 public class XMLReport implements Report {
-    Store store;
-    JAXBContext context;
-    Marshaller marshaller;
+    private Store store;
+    private JAXBContext context;
+    private Marshaller marshaller;
 
-    public XMLReport(Store store, Marshaller marshaller) {
+    public XMLReport(Store store) throws JAXBException {
         this.store = store;
-        this.marshaller = marshaller;
+        this.context = JAXBContext.newInstance(XMLReport.Employees.class);
+        this.marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
     }
 
     @Override
@@ -35,7 +36,6 @@ public class XMLReport implements Report {
     }
 
     @XmlRootElement
-
     public static class Employees {
         private List<Employee> employees;
 

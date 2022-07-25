@@ -10,21 +10,15 @@ public class Shop implements Store {
     private final static int MIDDLE_BOUND = 75;
     private final static int UPPER_BOUND = 100;
 
-    @Override
-    public void add(Food food) {
-        foods.add(food);
-    }
 
     @Override
-    public boolean assign(Food food) {
+    public boolean add(Food food) {
         boolean result = false;
-        double checker = ControlQuality.check(food);
-        if (checker >= LOWER_BOUND && checker <= MIDDLE_BOUND) {
-            foods.add(food);
-            result = true;
-        }
-        if (checker > MIDDLE_BOUND && checker < UPPER_BOUND) {
-            food.setPrice(discountedPrice(food));
+        double checker = check(food);
+        if (assign(food)) {
+            if (checker > MIDDLE_BOUND && checker < UPPER_BOUND) {
+                food.setPrice(discountedPrice(food));
+            }
             foods.add(food);
             result = true;
         }
@@ -32,8 +26,14 @@ public class Shop implements Store {
     }
 
     @Override
+    public boolean assign(Food food) {
+        double checker = check(food);
+        return checker >= LOWER_BOUND && checker < UPPER_BOUND;
+    }
+
+    @Override
     public List<Food> getAll() {
-        return foods;
+        return new ArrayList<>(foods);
     }
 
     private double discountedPrice(Food food) {

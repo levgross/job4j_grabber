@@ -1,6 +1,5 @@
 package ru.job4j.ood.lsp;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,14 +8,9 @@ public class Warehouse implements Store {
     private final static int BOUND = 25;
 
     @Override
-    public void add(Food food) {
-        foods.add(food);
-    }
-
-    @Override
-    public boolean assign(Food food) {
+    public boolean add(Food food) {
         boolean result = false;
-        if (ControlQuality.check(food) < BOUND) {
+        if (assign(food)) {
             foods.add(food);
             result = true;
         }
@@ -24,7 +18,12 @@ public class Warehouse implements Store {
     }
 
     @Override
+    public boolean assign(Food food) {
+        return check(food) < BOUND;
+    }
+
+    @Override
     public List<Food> getAll() {
-        return foods;
+        return new ArrayList<>(foods);
     }
 }

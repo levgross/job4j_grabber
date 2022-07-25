@@ -1,10 +1,6 @@
-package ru.job4j.ood.lsp;
+package ru.job4j.ood.lsp.foodcontrol;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 public class ControlQuality {
     private final List<Store> stores;

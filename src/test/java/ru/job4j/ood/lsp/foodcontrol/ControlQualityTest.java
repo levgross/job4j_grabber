@@ -1,6 +1,7 @@
-package ru.job4j.ood.lsp;
+package ru.job4j.ood.lsp.foodcontrol;
 
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.*;
 
 import java.time.LocalDate;

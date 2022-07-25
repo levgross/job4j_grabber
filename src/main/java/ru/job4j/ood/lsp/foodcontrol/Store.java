@@ -1,8 +1,7 @@
-package ru.job4j.ood.lsp;
+package ru.job4j.ood.lsp.foodcontrol;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.function.Predicate;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 

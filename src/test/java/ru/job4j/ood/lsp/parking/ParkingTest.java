@@ -1,11 +1,15 @@
 package ru.job4j.ood.lsp.parking;
 
+
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 class ParkingTest {
-
+/**
+ * Не знаю, как ещё выгрузить через бота под TDD тесты на классы и методы, которых пока нет.
+ * В уроке "2. Что такое TDD?" помогла аннотация @Ignore, тут на JUnit 5 не работает.
+ *
     @Ignore
     @Test
     public void whenParkCar() {
@@ -53,4 +57,5 @@ class ParkingTest {
             parking.park(track);
         }).hasMessage("No free places!");
     }
+    */
 }

@@ -1,61 +1,69 @@
 package ru.job4j.ood.lsp.parking;
 
-
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 class ParkingTest {
-/**
- * Не знаю, как ещё выгрузить через бота под TDD тесты на классы и методы, которых пока нет.
- * В уроке "2. Что такое TDD?" помогла аннотация @Ignore, тут на JUnit 5 не работает.
- *
-    @Ignore
+
+    @Disabled
     @Test
     public void whenParkCar() {
-        Parking parking = new SimpleParking(3, 5);
-        Auto car = new Car();
+        var parking = new SimpleParking(3, 2);
+        var car = new Car();
         parking.park(car);
-        assertThat(parking.carsParcked.size()).EqualsTo(1);
+        assertThat(parking.getCars()).isEqualTo(2);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void whenParkTrack() {
-        Parking parking = new SimpleParking(3, 5);
-        Auto track = new Track(3.5);
+        var parking = new SimpleParking(3, 5);
+        var track = new Track(3);
         parking.park(track);
-        assertThat(parking.tracksParcked.size()).EqualsTo(1);
+        assertThat(parking.getTracks()).isEqualTo(4);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void whenParkTrackButNoPlaceInTracks() {
-        Parking parking = new SimpleParking(5, 0);
-        Auto track = new Track(3.5);
+        var parking = new SimpleParking(5, 0);
+        var track = new Track(3);
         parking.park(track);
-        assertThat(parking.carsParcked.size()).EqualsTo(4);
-        assertThat(parking.tracksParcked.size()).EqualsTo(0);
+        assertThat(parking.getCars()).isEqualTo(2);
+        assertThat(parking.getTracks()).isEqualTo(0);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void whenParkCarButNoPlace() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            Parking parking = new SimpleParking(0, 1);
-            Auto car = new Car();
-            parking.park(car);
-        }).hasMessage("No free car places!");
+        var parking = new SimpleParking(0, 1);
+        var car = new Car();
+        assertThat(parking.park(car)).isFalse();
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void whenParkTrackButNoPlace() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            Parking parking = new SimpleParking(1, 0);
-            Auto track = new Track(2.5);
-            parking.park(track);
-        }).hasMessage("No free places!");
+        var parking = new SimpleParking(1, 0);
+        var track = new Track(2);
+        assertThat(parking.park(track)).isFalse();
     }
-    */
+
+    @Disabled
+    @Test
+    public void whenParkManyAutos() {
+        var parking = new SimpleParking(4, 2);
+        var car1 = new Car();
+        var track1 = new Track(5);
+        var track2 = new Track(2);
+        var track3 = new Track(3);
+        assertThat(parking.park(car1)).isTrue();
+        assertThat(parking.park(track1)).isTrue();
+        assertThat(parking.park(track2)).isTrue();
+        assertThat(parking.park(car1)).isTrue();
+        assertThat(parking.park(track3)).isFalse();
+        assertThat(parking.park(track2)).isTrue();
+        assertThat(parking.park(car1)).isFalse();
+    }
 }

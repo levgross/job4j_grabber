@@ -2,6 +2,7 @@ package ru.job4j.ood.lsp.parking;
 
 public class Track implements Auto {
     int size;
+    private boolean isParked = false;
 
     public Track(int size) {
         this.size = size;
@@ -9,6 +10,16 @@ public class Track implements Auto {
 
     @Override
     public int getSize() {
-        return 0;
+        return size;
+    }
+
+    @Override
+    public boolean isParked() {
+        return isParked;
+    }
+
+    @Override
+    public void setParked(boolean parked) {
+        isParked = parked;
     }
 }

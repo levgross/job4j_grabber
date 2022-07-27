@@ -1,12 +1,10 @@
 package ru.job4j.ood.lsp.parking;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 class ParkingTest {
 
-    @Disabled
     @Test
     public void whenParkCar() {
         var parking = new SimpleParking(3, 2);
@@ -15,7 +13,6 @@ class ParkingTest {
         assertThat(parking.getCarsCount()).isEqualTo(2);
     }
 
-    @Disabled
     @Test
     public void whenParkTrack() {
         var parking = new SimpleParking(3, 5);
@@ -24,7 +21,6 @@ class ParkingTest {
         assertThat(parking.getTracksCount()).isEqualTo(4);
     }
 
-    @Disabled
     @Test
     public void whenParkTrackButNoPlaceInTracks() {
         var parking = new SimpleParking(5, 0);
@@ -34,7 +30,6 @@ class ParkingTest {
         assertThat(parking.getTracksCount()).isEqualTo(0);
     }
 
-    @Disabled
     @Test
     public void whenParkCarButNoPlace() {
         var parking = new SimpleParking(0, 1);
@@ -42,7 +37,6 @@ class ParkingTest {
         assertThat(parking.park(car)).isFalse();
     }
 
-    @Disabled
     @Test
     public void whenParkTrackButNoPlace() {
         var parking = new SimpleParking(1, 0);
@@ -50,7 +44,6 @@ class ParkingTest {
         assertThat(parking.park(track)).isFalse();
     }
 
-    @Disabled
     @Test
     public void whenParkManyAutos() {
         var parking = new SimpleParking(4, 2);

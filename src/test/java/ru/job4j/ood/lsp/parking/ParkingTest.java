@@ -12,7 +12,7 @@ class ParkingTest {
         var parking = new SimpleParking(3, 2);
         var car = new Car();
         parking.park(car);
-        assertThat(parking.getCars()).isEqualTo(2);
+        assertThat(parking.getCarsCount()).isEqualTo(2);
     }
 
     @Disabled
@@ -21,7 +21,7 @@ class ParkingTest {
         var parking = new SimpleParking(3, 5);
         var track = new Track(3);
         parking.park(track);
-        assertThat(parking.getTracks()).isEqualTo(4);
+        assertThat(parking.getTracksCount()).isEqualTo(4);
     }
 
     @Disabled
@@ -30,8 +30,8 @@ class ParkingTest {
         var parking = new SimpleParking(5, 0);
         var track = new Track(3);
         parking.park(track);
-        assertThat(parking.getCars()).isEqualTo(2);
-        assertThat(parking.getTracks()).isEqualTo(0);
+        assertThat(parking.getCarsCount()).isEqualTo(2);
+        assertThat(parking.getTracksCount()).isEqualTo(0);
     }
 
     @Disabled
@@ -55,15 +55,19 @@ class ParkingTest {
     public void whenParkManyAutos() {
         var parking = new SimpleParking(4, 2);
         var car1 = new Car();
+        var car2 = new Car();
+        var car3 = new Car();
         var track1 = new Track(5);
-        var track2 = new Track(2);
+        var track2 = new Track(4);
         var track3 = new Track(3);
+        var track4 = new Track(2);
         assertThat(parking.park(car1)).isTrue();
         assertThat(parking.park(track1)).isTrue();
         assertThat(parking.park(track2)).isTrue();
-        assertThat(parking.park(car1)).isTrue();
-        assertThat(parking.park(track3)).isFalse();
-        assertThat(parking.park(track2)).isTrue();
         assertThat(parking.park(car1)).isFalse();
+        assertThat(parking.park(car2)).isTrue();
+        assertThat(parking.park(track3)).isFalse();
+        assertThat(parking.park(track4)).isTrue();
+        assertThat(parking.park(car3)).isFalse();
     }
 }

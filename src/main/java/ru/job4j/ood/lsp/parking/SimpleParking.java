@@ -1,20 +1,21 @@
 package ru.job4j.ood.lsp.parking;
 
 public class SimpleParking implements Parking {
-    int cars;
-    int tracks;
+    int carsCount;
+    int tracksCount;
 
-    public SimpleParking(int cars, int tracks) {
-        this.cars = cars;
-        this.tracks = tracks;
+
+    public SimpleParking(int carsCount, int tracksCount) {
+        this.carsCount = carsCount;
+        this.tracksCount = tracksCount;
     }
 
-    public int getCars() {
-        return cars;
+    public int getCarsCount() {
+        return carsCount;
     }
 
-    public int getTracks() {
-        return tracks;
+    public int getTracksCount() {
+        return tracksCount;
     }
 
     @Override

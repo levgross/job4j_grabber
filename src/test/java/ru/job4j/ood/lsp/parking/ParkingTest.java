@@ -47,7 +47,7 @@ class ParkingTest {
     @Test
     public void whenParkManyAutos() {
         var parking = new SimpleParking(4, 2);
-        var car1 = new Car();
+         var car1 = new Car();
         var car2 = new Car();
         var car3 = new Car();
         var track1 = new Track(5);

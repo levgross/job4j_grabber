@@ -1,24 +1,13 @@
 package ru.job4j.ood.lsp.parking;
 
 public class Car implements Auto {
-    private final int size = 1;
-    private boolean isParked = false;
+    public static final int CAR_SIZE = 1;
 
     public Car() {
     }
 
     @Override
     public int getSize() {
-        return size;
-    }
-
-    @Override
-    public boolean isParked() {
-        return isParked;
-    }
-
-    @Override
-    public void setParked(boolean parked) {
-        isParked = parked;
+        return CAR_SIZE;
     }
 }

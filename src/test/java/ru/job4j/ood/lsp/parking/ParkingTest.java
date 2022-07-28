@@ -63,4 +63,11 @@ class ParkingTest {
         assertThat(parking.park(track4)).isTrue();
         assertThat(parking.park(car3)).isFalse();
     }
+
+    @Test
+    public void whenTrackSizeIsOneThenException() {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            var track = new Track(1);
+        });
+    }
 }

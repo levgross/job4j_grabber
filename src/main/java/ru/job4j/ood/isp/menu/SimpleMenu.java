@@ -7,29 +7,37 @@ public class SimpleMenu implements Menu {
 
     @Override
     public boolean add(String parentName, String childName, ActionDelegate actionDelegate) {
-        boolean result = false;
-        if (findItem(parentName).isPresent()) {
-            rootElements.add(new SimpleMenuItem(childName, actionDelegate));
-            result = true;
+        if (findItem(childName).isPresent()) {
+            return false;
         }
-        return result;
+        if (parentName == ROOT) {
+            rootElements.add(new SimpleMenuItem(childName, actionDelegate));
+        } else if (findItem(parentName).isPresent()) {
+            findItem(parentName).get().menuItem.getChildren().add(new SimpleMenuItem(childName, actionDelegate));
+        }
+        return true;
     }
 
     @Override
     public Optional<MenuItemInfo> select(String itemName) {
-       var itemInfo = findItem(itemName);
-       if (itemInfo.isEmpty()) {
-          return Optional.empty();
-       }
-        var menuInfo = new MenuItemInfo(
-                new SimpleMenuItem(itemInfo.get().menuItem.getName(), itemInfo.get().menuItem.getActionDelegate()),
-                itemInfo.get().number);
-        return Optional.of(menuInfo);
+        return findItem(itemName).map(i -> new MenuItemInfo(i.menuItem, i.number));
     }
 
     @Override
     public Iterator<MenuItemInfo> iterator() {
-        return null;
+        var it = new DFSIterator();
+        return new Iterator<>() {
+            @Override
+            public boolean hasNext() {
+                return it.hasNext();
+            }
+
+            @Override
+            public MenuItemInfo next() {
+                var itemInfo = it.next();
+                return new MenuItemInfo(itemInfo.menuItem, itemInfo.number);
+            }
+        };
     }
 
     private Optional<ItemInfo> findItem(String name) {

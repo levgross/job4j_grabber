@@ -3,7 +3,6 @@ package ru.job4j.ood.isp.menu;
 import java.util.Scanner;
 
 public class TODOApp {
-    @SuppressWarnings("checkstyle:SimplifyBooleanExpression")
     public static void main(String[] args) {
         Menu menu = new SimpleMenu();
         final ActionDelegate STUB_ACTION = System.out::println;
@@ -44,7 +43,5 @@ public class TODOApp {
                     break;
             }
         }
-        menu.add(Menu.ROOT, "Go to job", STUB_ACTION);
-        new ConsolePrinter().print(menu);
     }
 }

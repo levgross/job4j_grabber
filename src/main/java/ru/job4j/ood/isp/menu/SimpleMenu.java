@@ -7,13 +7,16 @@ public class SimpleMenu implements Menu {
 
     @Override
     public boolean add(String parentName, String childName, ActionDelegate actionDelegate) {
-        var parentOptional = findItem(parentName);
+
         if (findItem(childName).isPresent()) {
             return false;
         }
         if (parentName == ROOT) {
             rootElements.add(new SimpleMenuItem(childName, actionDelegate));
-        } else if (parentOptional.isPresent()) {
+            return true;
+        }
+        var parentOptional = findItem(parentName);
+        if (parentOptional.isPresent()) {
             parentOptional.get().menuItem.getChildren().add(new SimpleMenuItem(childName, actionDelegate));
         } else {
             return false;

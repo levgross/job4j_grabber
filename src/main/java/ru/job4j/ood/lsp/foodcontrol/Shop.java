@@ -16,7 +16,7 @@ public class Shop implements Store {
         boolean result = false;
         double checker = check(food);
         if (assign(food)) {
-            if (checker > MIDDLE_BOUND && checker < UPPER_BOUND) {
+            if (checker > MIDDLE_BOUND && checker < UPPER_BOUND && !food.isDiscounted()) {
                 food.setPrice(discountedPrice(food));
             }
             foods.add(food);
@@ -36,7 +36,16 @@ public class Shop implements Store {
         return new ArrayList<>(foods);
     }
 
+    @Override
+    public List<Food> clear() {
+        List<Food> copyFoods = foods;
+        foods.clear();
+        return copyFoods;
+    }
+
     private double discountedPrice(Food food) {
+        food.setDiscounted(true);
         return food.getPrice() * (1 - food.getDiscount());
     }
+
 }

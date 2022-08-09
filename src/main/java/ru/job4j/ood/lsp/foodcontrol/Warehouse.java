@@ -26,4 +26,11 @@ public class Warehouse implements Store {
     public List<Food> getAll() {
         return new ArrayList<>(foods);
     }
+
+    @Override
+    public List<Food> clear() {
+        List<Food> copyFoods = foods;
+        foods.clear();
+        return copyFoods;
+    }
 }

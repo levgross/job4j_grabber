@@ -9,6 +9,7 @@ public class Food {
     private LocalDate createDate;
     private double price;
     private double discount;
+    private boolean isDiscounted = false;
 
     public Food(String name, LocalDate expiryDate, LocalDate createDate, double price, double discount) {
         this.name = name;
@@ -48,6 +49,14 @@ public class Food {
 
     public void setDiscount(double discount) {
         this.discount = discount;
+    }
+
+    public boolean isDiscounted() {
+        return isDiscounted;
+    }
+
+    public void setDiscounted(boolean discounted) {
+        isDiscounted = discounted;
     }
 
     @Override

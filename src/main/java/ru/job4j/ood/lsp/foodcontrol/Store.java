@@ -9,6 +9,7 @@ public interface Store {
     boolean add(Food food);
     boolean assign(Food food);
     List<Food> getAll();
+    List<Food> clear();
 
     default double check(Food food) {
         double daysLeft = (double) DAYS.between(LocalDate.now(), food.getExpiryDate());

@@ -38,7 +38,7 @@ public class Shop implements Store {
 
     @Override
     public List<Food> clear() {
-        List<Food> copyFoods = foods;
+        List<Food> copyFoods = new ArrayList<>(foods);
         foods.clear();
         return copyFoods;
     }

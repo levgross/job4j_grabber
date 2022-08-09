@@ -176,5 +176,4 @@ class ControlQualityTest {
         assertThat(eggs.getPrice()).isEqualTo(100);
         assertThat(eggs1.getPrice()).isEqualTo(100 * (1 - eggs1.getDiscount()));
     }
-
 }

@@ -5,7 +5,6 @@ import java.util.List;
 
 public class ControlQuality {
     private final List<Store> stores;
-    private List<Food> foods = new ArrayList<>();
 
     public ControlQuality(List<Store> stores) {
         this.stores = stores;
@@ -20,6 +19,7 @@ public class ControlQuality {
     }
 
     public void resort() {
+        List<Food> foods = new ArrayList<>();
         for (Store store : stores) {
             foods.addAll(store.getAll());
             store.clear();
